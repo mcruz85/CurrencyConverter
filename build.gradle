@@ -19,6 +19,13 @@ ext {
 }
 
 dependencies {
+
+    compile 'io.javalin:javalin:3.13.7'
+    compile "com.fasterxml.jackson.core:jackson-databind:2.10.3"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3"
+    compile "org.slf4j:slf4j-simple:1.8.0-beta4"
+
+
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }
 
