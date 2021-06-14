@@ -50,12 +50,14 @@ $ gradle run
 ## Endpoints
 
 Local
-> http://localhost:8080
+> http://localhost:7000
 
 Heroku
 > https://jaya-currency-converter.herokuapp.com
+ 
+Moedas disponíveis `BRL`, `USD`, `EUR`, `JPY`
 
-| HTTP        | URI           | Ação  |
-| ------------- |-------------|:-----|
-| `POST` | `/transactions` | Calcula a conversão entre moedas.|
-| `GET` | `/transactions?userId={userId}` | Lista transações realizadas por usuário |
+| HTTP        | URI           | Ação  | Corpo Requisição  |
+| ------------- |-------------|:-----|--------- | 
+| `POST` | `/transactions` | Calcula a conversão entre moedas| ``` { "from": "BRL", "to": "USD", "amount": 100, "userId": 1 } ``` |
+| `GET` | `/users/{userId}/transactions` | Lista transações realizadas por usuário | N/A |
