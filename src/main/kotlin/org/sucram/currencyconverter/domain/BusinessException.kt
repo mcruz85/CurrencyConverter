@@ -1,4 +1,6 @@
 package org.sucram.currencyconverter.domain
 
-class BusinessException {
+import java.lang.RuntimeException
+
+class BusinessException(message: String?) : RuntimeException(message) {
 }

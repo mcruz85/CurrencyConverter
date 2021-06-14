@@ -2,9 +2,12 @@ package org.sucram.currencyconverter.domain.service
 
 import TransactionRepository
 import org.slf4j.LoggerFactory
+import org.sucram.currencyconverter.domain.BusinessException
 import org.sucram.currencyconverter.domain.Transaction
 import org.sucram.currencyconverter.services.ExchangeService
 import org.sucram.currencyconverter.web.controllers.dto.ConversionDto
+import java.lang.RuntimeException
+import java.util.*
 
 class TransactionService(private val exchangeService: ExchangeService, private val transactionRepository: TransactionRepository) {
 
@@ -12,6 +15,8 @@ class TransactionService(private val exchangeService: ExchangeService, private v
 
     fun convert(conversionDto: ConversionDto): Transaction {
         logger.info("convert $conversionDto")
+
+        validate(conversionDto)
 
         val conversion = exchangeService.convert(conversionDto.from, conversionDto.to, conversionDto.amount);
 
@@ -28,9 +33,18 @@ class TransactionService(private val exchangeService: ExchangeService, private v
         return transaction.copy(id = transactionId)
     }
 
-
     fun findByUser(userId: Long):List<Transaction> {
         return transactionRepository.findByUserId(userId)
+    }
+
+    private fun validate(conversionDto: ConversionDto) {
+        isValidSymbol(conversionDto.from, "from")
+        isValidSymbol(conversionDto.to, "to")
+    }
+
+    private fun isValidSymbol(symbol: String, field: String) {
+        val symbols = listOf("BRL", "USD", "EUR", "JPY")
+        if(!symbols.contains(symbol)) { throw BusinessException("'$field' symbol no allowed") }
     }
 }
 

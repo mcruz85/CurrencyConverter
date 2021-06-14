@@ -1,6 +1,7 @@
 package org.sucram.currencyconverter.services
 
 import org.sucram.currencyconverter.api.ExchangeRatesAPIService
+import org.sucram.currencyconverter.domain.BusinessException
 
 
 data class Conversion(val rate: Double, val result: Double)
@@ -12,11 +13,11 @@ class ExchangeService(private val exchangeRatesAPIService: ExchangeRatesAPIServi
 
         val response = exchangeRatesAPIService.loadData(symbols= "$from,$to").execute()
 
-        if (!response.isSuccessful()) { RuntimeException("Fail 1!") }
+        if (!response.isSuccessful()) { BusinessException("External api unsuccessful call") }
 
         val body = response.body()
 
-        if (body == null || body.success) { RuntimeException("Fail 2!") }
+        if (body == null || !body.success) { BusinessException("External api unsuccessful call") }
 
         val rates = body!!.rates
 

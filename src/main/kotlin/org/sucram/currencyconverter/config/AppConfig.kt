@@ -9,17 +9,16 @@ import org.koin.core.KoinProperties
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.StandAloneContext
 import org.koin.standalone.inject
-import org.sucram.currencyconverter.web.controllers.Router
-import org.sucram.currencyconverter.web.controllers.TransactionController
+import org.sucram.currencyconverter.web.ErrorExceptionMapping
+import org.sucram.currencyconverter.web.Router
 import java.text.SimpleDateFormat
 
-class AppConfig: KoinComponent {
+class AppConfig : KoinComponent {
 
     private val router: Router by inject()
 
 
-
-    fun setup(): Javalin{
+    fun setup(): Javalin {
 
         StandAloneContext.startKoin(
             allModules,
@@ -33,7 +32,7 @@ class AppConfig: KoinComponent {
                 enableWebjars()
                 enableCorsForAllOrigins()
                 addStaticFiles("/swagger")
-                addSinglePageRoot("","/swagger/swagger-ui.html")
+                addSinglePageRoot("", "/swagger/swagger-ui.html")
                 server {
                     Server(port)
                 }
@@ -44,7 +43,8 @@ class AppConfig: KoinComponent {
             }
         }
 
-       router.register(app)
+        router.register(app)
+        ErrorExceptionMapping.register(app)
         return app
     }
 

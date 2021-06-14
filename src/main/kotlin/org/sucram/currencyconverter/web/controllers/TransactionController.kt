@@ -1,6 +1,7 @@
 package org.sucram.currencyconverter.web.controllers
 
 import io.javalin.http.Context
+import org.eclipse.jetty.http.HttpStatus
 import org.slf4j.LoggerFactory
 import org.sucram.currencyconverter.domain.service.TransactionService
 import org.sucram.currencyconverter.web.controllers.dto.ConversionDto
@@ -21,7 +22,7 @@ class TransactionController(private val transactionService: TransactionService) 
 
                 logger.info(conversionDto.toString())
                 transactionService.convert(conversionDto).apply {
-                    ctx.json(this).status(201)
+                    ctx.json(this).status(HttpStatus.CREATED_201)
                 }
             }
     }
