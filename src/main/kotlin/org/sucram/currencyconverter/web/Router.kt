@@ -1,11 +1,14 @@
-package org.sucram.currencyconverter.web.controllers
+package org.sucram.currencyconverter.web
+
 
 import io.javalin.Javalin
 import io.javalin.apibuilder.ApiBuilder.*
 import org.koin.standalone.KoinComponent
+import org.sucram.currencyconverter.web.controllers.TransactionController
 
 class Router(
-    private val transactionController: TransactionController) : KoinComponent {
+    private val transactionController: TransactionController
+) : KoinComponent {
 
     fun register(app: Javalin) {
         app.routes {
