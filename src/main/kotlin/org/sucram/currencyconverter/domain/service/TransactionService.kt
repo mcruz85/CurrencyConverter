@@ -4,10 +4,7 @@ import TransactionRepository
 import org.slf4j.LoggerFactory
 import org.sucram.currencyconverter.domain.BusinessException
 import org.sucram.currencyconverter.domain.Transaction
-import org.sucram.currencyconverter.services.ExchangeService
 import org.sucram.currencyconverter.web.controllers.dto.ConversionDto
-import java.lang.RuntimeException
-import java.util.*
 
 class TransactionService(private val exchangeService: ExchangeService, private val transactionRepository: TransactionRepository) {
 
@@ -34,6 +31,7 @@ class TransactionService(private val exchangeService: ExchangeService, private v
     }
 
     fun findByUser(userId: Long):List<Transaction> {
+        logger.info("findByUser userId: $userId")
         return transactionRepository.findByUserId(userId)
     }
 

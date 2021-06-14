@@ -4,7 +4,7 @@ import TransactionRepository
 import org.koin.dsl.module.module
 import org.sucram.currencyconverter.api.ExchangeRatesAPIService
 import org.sucram.currencyconverter.domain.service.TransactionService
-import org.sucram.currencyconverter.services.ExchangeService
+import org.sucram.currencyconverter.domain.service.ExchangeService
 import org.sucram.currencyconverter.web.Router
 import org.sucram.currencyconverter.web.controllers.TransactionController
 

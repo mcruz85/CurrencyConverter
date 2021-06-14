@@ -11,7 +11,6 @@ class TransactionController(private val transactionService: TransactionService) 
     private val logger = LoggerFactory.getLogger(this::class.java.name)
 
     fun create(ctx: Context) {
-
         logger.info("Received request for create transaction")
 
         ctx.bodyValidator<ConversionDto>()
