@@ -1,7 +1,7 @@
 package org.sucram.currencyconverter.web.controllers
 
 import io.javalin.Javalin
-import io.javalin.apibuilder.ApiBuilder
+import io.javalin.apibuilder.ApiBuilder.*
 import org.koin.standalone.KoinComponent
 
 class Router(
@@ -9,10 +9,13 @@ class Router(
 
     fun register(app: Javalin) {
         app.routes {
-            ApiBuilder.path("transactions") {
-                ApiBuilder.post(transactionController::create)
-                ApiBuilder.path(":user-id") {
-                    ApiBuilder.get(transactionController::findByUser)
+            path("transactions") {
+                post(transactionController::create)
+            }
+
+            path("users") {
+                path(":user-id/transactions") {
+                    get(transactionController::findByUser)
                 }
             }
         }

@@ -47,4 +47,15 @@ $ gradle clean build
 $ gradle run
 ```
 
-https://jaya-currency-converter.herokuapp.com
+## Endpoints
+
+Local
+> http://localhost:8080
+
+Heroku
+> https://jaya-currency-converter.herokuapp.com
+
+| HTTP        | URI           | Ação  |
+| ------------- |-------------|:-----|
+| `POST` | `/transactions` | Calcula a conversão entre moedas.|
+| `GET` | `/transactions?userId={userId}` | Lista transações realizadas por usuário |
