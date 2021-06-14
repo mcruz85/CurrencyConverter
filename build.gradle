@@ -43,7 +43,10 @@ dependencies {
     compile "org.webjars:swagger-ui:3.24.3"
     compile "io.swagger.core.v3:swagger-core:2.0.9"
 
+    testImplementation "org.mockito.kotlin:mockito-kotlin:3.2.0"
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testCompile "junit:junit:4.12"
+    testCompile "com.mashape.unirest:unirest-java:1.4.9"
 }
 
 
