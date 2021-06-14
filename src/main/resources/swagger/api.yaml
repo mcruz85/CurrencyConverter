@@ -31,8 +31,8 @@ paths:
         required: true
         x-send-file-in-body: false
       responses:
-        '200':
-          description: 'successful operation'
+        '201':
+          description: 'Successful operation'
           schema:
             type: "array"
             items:
@@ -41,7 +41,7 @@ paths:
           description: "Bad request"
       deprecated: false
   /users/{usertId}/transactions:
-    post:
+    get:
       tags:
         - Users
       summary: "retrieves all transactions performed by user"
