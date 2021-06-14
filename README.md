@@ -58,11 +58,11 @@ Heroku
 Moedas disponíveis `BRL`, `USD`, `EUR`, `JPY`
 
 
-### Rotas
+### Endpoints
 
 
 
-| HTTP        | URI           | Ação  | Corpo Requisição  |
+| HTTP        | URI           | Ação  | Corpo da requisição  |
 | ------------- |-------------|:-----|--------- | 
 | `POST` | `/transactions` | Calcula a conversão entre moedas| ``` { "from": "BRL", "to": "USD", "amount": 100, "userId": 1 } ``` |
 | `GET` | `/users/{userId}/transactions` | Lista todas transações realizadas por usuário | N/A |
