@@ -1,8 +1,10 @@
 package org.sucram.currencyconverter.domain.service
 
 import TransactionRepository
+import org.apache.commons.lang3.EnumUtils
 import org.slf4j.LoggerFactory
 import org.sucram.currencyconverter.domain.BusinessException
+import org.sucram.currencyconverter.domain.Symbol
 import org.sucram.currencyconverter.domain.Transaction
 import org.sucram.currencyconverter.web.controllers.dto.ConversionDto
 
@@ -41,8 +43,7 @@ class TransactionService(private val exchangeService: ExchangeService, private v
     }
 
     private fun isValidSymbol(symbol: String, field: String) {
-        val symbols = listOf("BRL", "USD", "EUR", "JPY")
-        if(!symbols.contains(symbol)) { throw BusinessException("'$field' symbol no allowed") }
+        if (!EnumUtils.isValidEnum(Symbol::class.java, symbol)) { throw BusinessException("field '$field' with currency symbol no allowed") }
     }
 }
 

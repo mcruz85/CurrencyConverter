@@ -11,6 +11,7 @@ class ExchangeService(private val exchangeRatesAPIService: ExchangeRatesAPIServi
 
     private val logger = LoggerFactory.getLogger(this::class.java.name)
 
+
     fun convert(from: String, to: String, amount: Double): Conversion {
        logger.info("convert from=$from, to=$to, amount=$amount")
 
