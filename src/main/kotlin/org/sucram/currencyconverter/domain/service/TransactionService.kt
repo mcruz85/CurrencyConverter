@@ -15,8 +15,6 @@ class TransactionService(private val exchangeService: ExchangeService, private v
     fun convert(conversionDto: ConversionDto): Transaction {
         logger.info("convert $conversionDto")
 
-        validate(conversionDto)
-
         val conversion = exchangeService.convert(conversionDto.from, conversionDto.to, conversionDto.amount);
 
         val transaction = Transaction(
@@ -37,13 +35,6 @@ class TransactionService(private val exchangeService: ExchangeService, private v
         return transactionRepository.findByUserId(userId)
     }
 
-    private fun validate(conversionDto: ConversionDto) {
-        isValidSymbol(conversionDto.from, "from")
-        isValidSymbol(conversionDto.to, "to")
-    }
 
-    private fun isValidSymbol(symbol: String, field: String) {
-        if (!EnumUtils.isValidEnum(Symbol::class.java, symbol)) { throw BusinessException("field '$field' with currency symbol no allowed") }
-    }
 }
 
