@@ -95,7 +95,7 @@ class TransactionControllerTest {
     fun `success convert currency`() {
 
         // Arrange
-        val file = File("src/test/resources/request_brl_to_usd.json")
+        val file = File("src/test/resources/request_usd_to_brl.json")
         val fileContent = file.readText()
         val jsonFile: JsonNode = ObjectMapper().readTree(fileContent)
 
