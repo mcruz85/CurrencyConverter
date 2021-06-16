@@ -1,7 +1,10 @@
 # [Currency converter](https://jaya-currency-converter.herokuapp.com)
 
 Implementação do convesor de moedas visando cumprir os requisitos do desafio técnico proposto.
+
 https://jaya-currency-converter.herokuapp.com
+
+Nesse desafio me desafiei a seguir uma das stacks proposta na qual eu nunca havia trabalhando antes, não consegui implementar todos os itens desejáveis, mas a API está funcional.
 
 ## Stack
 
@@ -55,17 +58,14 @@ Local
 Heroku
 > https://jaya-currency-converter.herokuapp.com
  
-Moedas disponíveis `BRL`, `USD`, `EUR`, `JPY`
-
-
-### Endpoints
+Moedas disponíveis `BRL`, `USD`, `EUR`, `JPY` para realizar conversão.
 
 
 
-| HTTP        | URI           | Ação  | Corpo da requisição  |
-| ------------- |-------------|:-----|--------- | 
-| `POST` | `/transactions` | Calcula a conversão entre moedas| ``` { "from": "BRL", "to": "USD", "amount": 100, "userId": 1 } ``` |
-| `GET` | `/users/{userId}/transactions` | Lista todas transações realizadas por usuário | N/A |
+| HTTP        | URI           | Ação  | 
+| ------------- |-------------|:-----|
+| `POST` | `/transactions` | Calcula a conversão entre moedas| 
+| `GET` | `/transactions?user={userId}` | Lista todas transações realizadas por usuário |
 
 
 
