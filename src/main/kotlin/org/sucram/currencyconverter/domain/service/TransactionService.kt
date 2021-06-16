@@ -20,7 +20,7 @@ class TransactionService(private val exchangeService: ExchangeService, private v
         val conversion = exchangeService.convert(conversionDto.from, conversionDto.to, conversionDto.amount);
 
         val transaction = Transaction(
-            userId = conversionDto.userId,
+            userId = conversionDto.userId!!,
             originCurrency = conversionDto.from,
             originAmount = conversionDto.amount,
             destinationCurrency = conversionDto.to,

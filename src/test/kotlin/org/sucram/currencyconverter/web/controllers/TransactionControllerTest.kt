@@ -45,21 +45,17 @@ class TransactionControllerTest {
     }
 
     @Test
-    fun `get all transactions from user id`() {
+    fun `get all transactions by user id`() {
 
         // Arrange
         val userId = 1000
 
         // Act
-        val response = http.get<List<Transaction>>("/users/$userId/transactions")
+        val response = http.get<List<Transaction>>("/transactions?user=$userId")
 
         // Assert
         assertEquals(response.status, HttpStatus.OK_200)
         assertEquals(response.body?.size, 1)
-//        assertEquals(response.body?.get(0)?.userId, userId)
-//        assertEquals(response.body?.get(0)?.originCurrency, "BRL")
-//        assertEquals(response.body?.get(0)?.originAmount, 5.0)
-//        assertEquals(response.body?.get(0)?.destinationCurrency, "USD")
     }
 
 
@@ -80,7 +76,7 @@ class TransactionControllerTest {
 
 
     @Test
-    fun `get status code 422 from when from currency symbol blank`() {
+    fun `get status code 400 from when from currency symbol blank`() {
 
         // Arrange
         val file = File("src/test/resources/request_from_currency_blank.json")
@@ -92,7 +88,7 @@ class TransactionControllerTest {
         val response = http.createTransaction(jsonFile)
 
         // Assert
-        assertEquals(response.status, HttpStatus.UNPROCESSABLE_ENTITY_422)
+        assertEquals(response.status, HttpStatus.BAD_REQUEST_400)
     }
 
     @Test
@@ -108,10 +104,7 @@ class TransactionControllerTest {
 
         // Assert
         assertEquals(response.status, HttpStatus.CREATED_201)
-
     }
-
-
 
 
 }

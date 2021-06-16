@@ -14,6 +14,7 @@ class ExchangeRatesAPIService {
         .build()
         .create(ExchangeRatesAPI::class.java)
 
+
     fun loadData(symbols: String ="BRL,USD,EUR,JPY"): Call<LatestRateResponseDTO> {
         return api.getData(symbols= symbols)
     }

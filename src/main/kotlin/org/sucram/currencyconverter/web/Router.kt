@@ -14,12 +14,7 @@ class Router(
         app.routes {
             path("transactions") {
                 post(transactionController::create)
-            }
-
-            path("users") {
-                path(":user-id/transactions") {
-                    get(transactionController::findByUser)
-                }
+                get(transactionController::findByUser)
             }
         }
     }

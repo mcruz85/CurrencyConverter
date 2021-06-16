@@ -4,5 +4,5 @@ data class ConversionDto(
     var from: String,
     val to: String,
     val amount: Double,
-    val userId: Long
+    val userId: Long? = null
 )

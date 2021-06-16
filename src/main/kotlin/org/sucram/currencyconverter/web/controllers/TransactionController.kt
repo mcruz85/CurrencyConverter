@@ -11,12 +11,13 @@ class TransactionController(private val transactionService: TransactionService) 
     private val logger = LoggerFactory.getLogger(this::class.java.name)
 
     fun create(ctx: Context) {
-        logger.info("Received request for create transaction")
+        logger.info("Received request for create transaction ${ctx.body()}")
 
         ctx.bodyValidator<ConversionDto>()
             .check({ !it.from.isNullOrBlank() }, "'from' must not be null or blank")
             .check({ !it.to.isNullOrBlank() }, "'to' must not be null or blank")
             .check({ !it.amount.isNaN() }, "'amount' must not be null or blank")
+            .check({ it.userId != null}, "'userId' must not be null")
             .get().also { conversionDto ->
 
                 logger.info(conversionDto.toString())
@@ -28,8 +29,8 @@ class TransactionController(private val transactionService: TransactionService) 
 
 
     fun findByUser(ctx: Context) {
-        logger.info("Received request for transactions by user")
-        ctx.json(transactionService.findByUser(ctx.pathParam("user-id").toLong())!!)
-
+        logger.info("Received request for transactions by user ${ctx.url()}")
+        val userId = ctx.queryParam<Long>("user").get()
+        ctx.json(transactionService.findByUser(userId))
     }
 }
