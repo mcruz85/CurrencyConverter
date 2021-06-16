@@ -28,7 +28,7 @@ object ErrorExceptionMapping {
         app.exception(BadRequestResponse::class.java) { _, ctx ->
             LOG.warn("BadRequestResponse occurred for req -> ${ctx.url()}")
             val error = ErrorResponse(mapOf("body" to listOf("can't be empty or invalid")))
-            ctx.json(error).status(HttpStatus.UNPROCESSABLE_ENTITY_422)
+            ctx.json(error).status(HttpStatus.BAD_REQUEST_400)
         }
 
         app.exception(NotFoundResponse::class.java) { _, ctx ->
