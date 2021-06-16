@@ -1,7 +1,6 @@
 openapi: 3.0.0
 info:
   title: Currency convert
-  description:
 
   contact: {}
   version: '1.0'
@@ -26,39 +25,42 @@ paths:
             example:
               from: 'BRL'
               to: 'USD'
-              amount: 100
+              amount: 100.00
               userId: 1
         required: true
         x-send-file-in-body: false
       responses:
         '201':
           description: 'Successful operation'
-          schema:
-            type: "array"
-            items:
-              $ref: "#/components/schemas/Transaction"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
         '400':
           description: "Bad request"
-      deprecated: false
-  /users/{usertId}/transactions:
     get:
       tags:
-        - Users
+        - Transactions
       summary: "retrieves all transactions performed by user"
-      description: ""
-      operationId: "transactionsByUser"
-      produces:
-        - "application/json"
       parameters:
-        - name: "usertId"
-          in: "path"
-          description: "ID of user"
+        - in: query
+          name: user
           required: true
-          type: "integer"
-          format: "int64"
+          description: User id
+          schema:
+            type: "integer"
+            format: "int64"
+
       responses:
         "200":
           description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Transaction"
+
 components:
   schemas:
     Transaction:
@@ -115,5 +117,15 @@ components:
         to: 'USD'
         amount: 100
         userId: 1
+
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      properties:
+        body:
+          type: array
+          items:
+            type: string
+
 tags:
   - name: Transactions
